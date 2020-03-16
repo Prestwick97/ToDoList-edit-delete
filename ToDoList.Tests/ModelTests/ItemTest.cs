@@ -28,35 +28,35 @@ namespace ToDoList.Tests
       Assert.AreEqual(typeof(Item), newItem.GetType());
     }
 
-    // [TestMethod]
-    // public void GetDescription_ReturnsDescription_String()
-    // {
-    //   //Arrange
-    //   string description = "Walk the dog.";
+    [TestMethod]
+    public void GetDescription_ReturnsDescription_String()
+    {
+      //Arrange
+      string description = "Walk the dog.";
 
-    //   //Act
-    //   Item newItem = new Item(description);
-    //   string result = newItem.Description;
+      //Act
+      Item newItem = new Item(description);
+      string result = newItem.Description;
 
-    //   //Assert
-    //   Assert.AreEqual(description, result);
-    // }
+      //Assert
+      Assert.AreEqual(description, result);
+    }
 
-    // [TestMethod]
-    // public void SetDescription_SetDescription_String()
-    // {
-    //   //Arrange
-    //   string description = "Walk the dog.";
-    //   Item newItem = new Item(description);
+    [TestMethod]
+    public void SetDescription_SetDescription_String()
+    {
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
 
-    //   //Act
-    //   string updatedDescription = "Do the dishes";
-    //   newItem.Description = updatedDescription;
-    //   string result = newItem.Description;
+      //Act
+      string updatedDescription = "Do the dishes";
+      newItem.Description = updatedDescription;
+      string result = newItem.Description;
 
-    //   //Assert
-    //   Assert.AreEqual(updatedDescription, result);
-    // }
+      //Assert
+      Assert.AreEqual(updatedDescription, result);
+    }
 
     [TestMethod]
     public void GetAll_ReturnsEmptyListFromDatabase_ItemList()
@@ -113,7 +113,7 @@ namespace ToDoList.Tests
       CollectionAssert.AreEqual(newList, result);
     }
 
-    // //----------------------
+    //----------------------
 
     // [TestMethod]
     // public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
@@ -121,6 +121,7 @@ namespace ToDoList.Tests
     //   //Arrange
     //   string description = "Walk the dog.";
     //   Item newItem = new Item(description);
+    //   newItem.Save();
 
     //   //Act
     //   int result = newItem.Id;
@@ -128,20 +129,22 @@ namespace ToDoList.Tests
     //   //Assert
     //   Assert.AreEqual(1, result);
     // }
-    // [TestMethod]
-    // public void Find_ReturnsCorrectItem_Item()
-    // {
-    //   //Arrange
-    //   string description01 = "Walk the dog";
-    //   string description02 = "Wash the dishes";
-    //   Item newItem1 = new Item(description01);
-    //   Item newItem2 = new Item(description02);
+    [TestMethod]
+    public void Find_ReturnsCorrectItemFromDatabase_Item()
+    {
+      //Arrange
+      string description01 = "Walk the dog";
+      string description02 = "Wash the dishes";
+      Item newItem1 = new Item(description01);
+      newItem1.Save();
+      Item newItem2 = new Item(description02);
+      newItem2.Save();
 
-    //   //Act
-    //   Item result = Item.Find(2);
+      //Act
+      Item foundItem = Item.Find(newItem1.Id);
 
-    //   //Assert
-    //   Assert.AreEqual(newItem2, result);
-    // }
+      //Assert
+      Assert.AreEqual(newItem1, foundItem);
+    }
   }
 }
