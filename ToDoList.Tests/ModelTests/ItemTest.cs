@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using ToDoList.Models;
 using System;
 using MySql.Data.MySqlClient;
-using ToDoList.Keys;
 
 namespace ToDoList.Tests
 {
@@ -18,7 +17,7 @@ namespace ToDoList.Tests
 
     public ItemTest()
     {
-      DBConfiguration.ConnectionString = $"server=localhost;user id=root;password={Keys.Keys.DbPass};port=3306;database=to_do_list_test;";
+      DBConfiguration.ConnectionString = $"server=localhost;user id=root;password=epicodus;port=3306;database=to_do_list_test;";
     }
 
     [TestMethod]

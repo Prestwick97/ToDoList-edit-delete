@@ -15,17 +15,17 @@ namespace ToDoList.Controllers
       return View(allItems);
     }
 
-    [HttpGet("/categories/{categoryId}/items/new")]
-    public ActionResult New(int categoryId)
+    [HttpGet("/items/new")]
+    public ActionResult New()
     {
-      Category category = Category.Find(categoryId);
-      return View(category);
+      return View();
     }
     
     [HttpPost("/items")]
     public ActionResult Create(string description)
     {
       Item myItem = new Item(description);
+      myItem.Save();
       return RedirectToAction("Index");
     }
 

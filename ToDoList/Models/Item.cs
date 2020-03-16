@@ -39,7 +39,7 @@ namespace ToDoList.Models
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
 
-      cmd.CommandText = @"  INSERT INTO items (description) VALUES (@ItemDescription);";
+      cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
       MySqlParameter description = new MySqlParameter();
       description.ParameterName = "@ItemDescription";
       description.Value = this.Description;

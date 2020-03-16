@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ToDoList.Keys;
 
 namespace ToDoList
 {
@@ -44,6 +43,6 @@ namespace ToDoList
   }
   public static class DBConfiguration
   {
-    public static string ConnectionString = $"server=localhost;user id=root;password={Keys.Keys.DbPass};port=3306;database=to_do_list;";
+    public static string ConnectionString = $"server=localhost;user id=root;password=epicodus;port=3306;database=to_do_list;";
   }
 }
