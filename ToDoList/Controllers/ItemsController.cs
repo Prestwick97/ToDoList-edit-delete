@@ -22,10 +22,11 @@ namespace ToDoList.Controllers
       return View(model);
     }
 
-    // public ActionResult Create()
-    // {
-    //   return View();
-    // }
+    public ActionResult Create()
+    {
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      return View();
+    }
 
     [HttpPost]
     public ActionResult Create(Item item)
@@ -35,23 +36,11 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Create()
-    {
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-      return View();
-    }
-
     public ActionResult Details(int id)
     {
       Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
       return View(thisItem);
     }
-
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    //   return View(thisItem);
-    // }
 
     public ActionResult Edit(int id)
     {
@@ -70,8 +59,8 @@ namespace ToDoList.Controllers
 
     public ActionResult Delete(int id)
     {
-    var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    return View(thisItem);
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      return View(thisItem);
     }
 
     [HttpPost, ActionName("Delete")]
