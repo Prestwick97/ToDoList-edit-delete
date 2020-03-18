@@ -3,6 +3,7 @@ using ToDoList.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ToDoList.Controllers
 {
@@ -34,6 +35,12 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Create()
+    {
+      ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+      return View();
+    }
+
     public ActionResult Details(int id)
     {
       Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
@@ -43,6 +50,13 @@ namespace ToDoList.Controllers
     {
      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
      return View(thisItem);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisItem = db.Items.FirstOrDefault(items => items.ItemId == id);
+      ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+      return View(thisItem);
     }
 
     [HttpPost]
